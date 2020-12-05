@@ -12,39 +12,19 @@ arr[i] > arr[i + 1] > ... > arr[arr.length - 1]
 
 const validMountainArray = function(arr) {
 
-    if (arr[0] > arr[1]) {
-        return false;
-    }
+    let l = arr.length;
+    i = 0;
 
-    let peaked = false;
-    
-    let i = 1;
- 
-    while (!peaked && i < arr.length) {
+    while (i + 1 < l && arr[i] < arr[i+1]) i++;
 
-        if (arr[i] === arr[i - 1]) {
-            return false;
-        }
+    if (i === 0 || i === l) return false;
 
-        if (arr[i] < arr[i - 1]) {
-            peaked = true;   
-        }
-        i++;
-    }
+    while (i + 1 < l && arr[i] > arr[i+1]) i++;
 
+    return i === l-1;
 
-    while (i < arr.length) {
-        if (arr[i] < arr[i - 1]) {
-            i++;
-        } else {
-            console.log(i)
-            return false;
-        }
-    }
-
-    return peaked ? true : false;
 }
 
 arr = [0,1,2,4,2,1];
 
-validMountainArray(arr);
+console.log(validMountainArray(arr));
