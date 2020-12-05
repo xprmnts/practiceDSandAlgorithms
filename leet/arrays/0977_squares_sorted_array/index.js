@@ -22,40 +22,60 @@ nums is sorted in non-decreasing order.
 */
 
 const sortedSquares = function(nums) {
-    // simple sol: return nums.map(x => x * x).sort((a,b) => a - b);   
+    let left = 0;
+    let right = nums.length - 1;
 
-    let l = nums.length;
-    let rp = 0;
+    let sorted = [];
 
-    while (rp < l && nums[rp] < 0) {
-        rp++;
-    }
-    let lp = rp - 1;
-    const sorted = [];
-
-    while (lp >= 0 && rp < l ) {
-        if (nums[lp] ** 2 < nums[rp] ** 2) {
-            sorted.push(nums[lp] ** 2)
-            lp--;
+    for(let i = 0; i < nums.length; i++){
+        if(nums[left]**2 > nums[right]**2 && left <= right) {
+            sorted.unshift(nums[left]**2);
+            left++;
         } else {
-            sorted.push(nums[rp] ** 2)
-            rp++;
+            sorted.unshift(nums[right]**2);
+            right--;
         }
     }
-
-    while (lp >= 0) {
-        sorted.push(nums[lp] ** 2)
-        lp--;
-    }
-
-    while (rp < l) {
-        sorted.push(nums[rp] ** 2);
-        rp++;
-    }
-
+    
     return sorted;
-
 }
+
+
+// const sortedSquares = function(nums) {
+//     // simple sol: return nums.map(x => x * x).sort((a,b) => a - b);   
+
+//     let l = nums.length;
+//     let rp = 0;
+
+//     while (rp < l && nums[rp] < 0) {
+//         rp++;
+//     }
+//     let lp = rp - 1;
+//     const sorted = [];
+
+//     while (lp >= 0 && rp < l ) {
+//         if (nums[lp] ** 2 < nums[rp] ** 2) {
+//             sorted.push(nums[lp] ** 2)
+//             lp--;
+//         } else {
+//             sorted.push(nums[rp] ** 2)
+//             rp++;
+//         }
+//     }
+
+//     while (lp >= 0) {
+//         sorted.push(nums[lp] ** 2)
+//         lp--;
+//     }
+
+//     while (rp < l) {
+//         sorted.push(nums[rp] ** 2);
+//         rp++;
+//     }
+
+//     return sorted;
+
+// }
 
 let arr = [-7,-3,2,3,11]
 
